@@ -55,25 +55,27 @@ class ScooterApp {
   }
   //rentScooter method
   rentScooter(scooter, user){
-
     let location  = scooter.station;
     let scooterSerial = scooter.serial;
     let listLength = scootApp.stations[location].length;
 
     for(let i = 0; i < listLength; i++){
       if(this.stations[location][i]["serial"] == scooterSerial){
-    
+        //assign user to scooter
+        if(scooter.user == !null){
+          throw new Error("Scooter already rented");
+        }else{
+          scooter.user = user;
+        }
+        //remove scooter from station list
         this.stations[location].splice(i,1);
         break;
       }
     }
-
-
-    //console.log(this.stations[location][0]);
-    
-    //console.log(this.stations[location][0]["serial"])
     
   }
+  //dockScooter method
+  
 
 
 
@@ -88,7 +90,7 @@ let scooter2 = scootApp.createScooter("location1");
 
 let user1 = new User("anderson", "tiban", 19);
 
-scootApp.rentScooter(scooter1, user1);
+scootApp.rentScooter(scooter2, user1);
 
 //scootApp.registerUser(user1.username, user1.password, user1.age);
 
