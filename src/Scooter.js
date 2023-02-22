@@ -23,10 +23,26 @@ class Scooter{
     this.station = station;
     this.user = null;
   }
+
+  // recharge method
+  async recharge() {
+    console.log('Starting charge');
+    
+    await new Promise(resolve => setTimeout(resolve, 2000)); // wait 2 seconds
+    this.charge = 100
+
+    console.log('Charge complete');   
+  }
+
+  async requestRepair(){
+    await new Promise(resolve => setTimeout(resolve, 5000)); // wait 5 seconds
+    this.isBroken = false;
+    console.log("Repair completed");
+  }
 }
 
-const scoot1 = new Scooter("location1");
-scoot1.rent();
+
+
 
 
 module.exports = Scooter
