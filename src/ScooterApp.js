@@ -70,6 +70,7 @@ class ScooterApp {
           scooter.user = user;
         }
         //remove scooter from station list
+        console.log("Scooter is rented");
         this.stations[location].splice(i,1);
         break;
       }
@@ -91,7 +92,10 @@ class ScooterApp {
   }
 
   //print method
-  
+  print(){
+    console.log(this.registeredUsers);
+    console.log(this.stations);
+  }
 
 }
 
@@ -107,7 +111,10 @@ scootApp.rentScooter(scooter1, user1);
 
 scootApp.dockScooter(scooter1, "location1")
 
-//scootApp.registerUser(user1.username, user1.password, user1.age);
+
+
+scootApp.registerUser(user1.username, user1.password, user1.age);
+scootApp.print();
 
 //scootApp.loginUser(user1, user1.password);
 
