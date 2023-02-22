@@ -13,7 +13,7 @@ class Scooter{
   rent(){
     if(this.charge > 20 && !this.isBroken){
       this.station = null;
-      //console.log("took scooter");
+      //this.user = 
     }else{
       throw new Error("Scooter needs to charge");
     }

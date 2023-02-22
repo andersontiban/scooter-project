@@ -42,23 +42,62 @@ class ScooterApp {
     }
   }
 
+  //create scooter method
+  createScooter(station){
+    if(station in this.stations){
+      let scooter = new Scooter(station)
+      this.stations[scooter.station].push(scooter);
+      console.log("Created new scooter");
+      return scooter;
+    }else{
+      throw new Error("no such station");
+    }
+  }
+  //rentScooter method
+  rentScooter(scooter, user){
+
+    let location  = scooter.station;
+    let scooterSerial = scooter.serial;
+    let listLength = scootApp.stations[location].length;
+
+    for(let i = 0; i < listLength; i++){
+      if(this.stations[location][i]["serial"] == scooterSerial){
+    
+        this.stations[location].splice(i,1);
+        break;
+      }
+    }
+
+
+    //console.log(this.stations[location][0]);
+    
+    //console.log(this.stations[location][0]["serial"])
+    
+  }
+
+
+
 }
 let scootApp = new ScooterApp();
 
+let scooter1 = scootApp.createScooter("location1");
+let scooter2 = scootApp.createScooter("location1");
+
+//console.log(scootApp.stations);
+//console.log(scootApp.stations["location1"].length);
 
 let user1 = new User("anderson", "tiban", 19);
 
+scootApp.rentScooter(scooter1, user1);
 
-scootApp.registerUser(user1.username, user1.password, user1.age);
+//scootApp.registerUser(user1.username, user1.password, user1.age);
 
-scootApp.loginUser(user1, user1.password);
-
-
-console.log(user1.loggedIn);
+//scootApp.loginUser(user1, user1.password);
 
 
-let scooter1 = new Scooter("location1");
-//console.log(scooter1);
+
+
+
 
 
 module.exports = ScooterApp
