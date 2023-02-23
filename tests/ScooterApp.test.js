@@ -26,6 +26,11 @@ describe("scooter app class", ()=>{
     })
 
     // rent scooter
+    test("rent scooter", ()=>{
+        console.log(scooter.serial);
+        scootApp.rentScooter(scooter, user);
+        expect(scooter.user).toBe(user);
+    })
 
     // dock scooter
 

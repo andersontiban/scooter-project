@@ -99,6 +99,7 @@ class ScooterApp {
 
 }
 
+
 let scootApp = new ScooterApp();
 
 let scooter1 = scootApp.createScooter("location1");
@@ -116,7 +117,6 @@ scootApp.dockScooter(scooter1, "location1")
 scootApp.registerUser(user1.username, user1.password, user1.age);
 scootApp.print();
 
-//scootApp.loginUser(user1, user1.password);
 
 
 
