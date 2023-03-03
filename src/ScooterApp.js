@@ -57,11 +57,14 @@ class ScooterApp {
   rentScooter(scooter, user){
     let location  = scooter.station;
     let scooterSerial = scooter.serial;
+    //You don't need this. Instead use a loop for an object
     let listLength = scootApp.stations[location].length;
 
     scooter.rent();
-
-    for(let i = 0; i < listLength; i++){
+    
+//REFACTOR HERE 
+    //use a for-in loop instead of a for-loop
+    for(let i = 0; i < listLength; i++){     
       if(this.stations[location][i]["serial"] == scooterSerial){
         //assign user to scooter
         if(scooter.user == !null){
