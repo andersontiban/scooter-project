@@ -1,0 +1,68 @@
+Scooter
+
+
+ScooterApp
+Here are some suggestions for refactoring the code:
+
+Use for...of loop instead of for loop:
+You can use the for...of loop to iterate over an array or any iterable object, making the code more concise and readable. For example, in the rentScooter method, you can replace the for loop with a for...of loop:
+
+
+for (let scooter of this.stations[location]) {
+  if (scooter.serial === scooterSerial) {
+    // assign user to scooter
+    if (scooter.user) {
+      throw new Error("Scooter already rented");
+    } else {
+      scooter.user = user;
+    }
+    // remove scooter from station list
+    console.log("Scooter is rented");
+    this.stations[location].splice(this.stations[location].indexOf(scooter), 1);
+    break;
+  }
+}
+
+Use object destructuring to simplify variable assignments:
+You can use object destructuring to simplify variable assignments. For example, in the createScooter method, you can destructure the station property from the scooter object like this:
+
+let { station } = scooter;
+
+Use template literals to improve string concatenation:
+You can use template literals to improve string concatenation, making it easier to read and understand. For example, in the registerUser method, you can use template literals to concatenate the error message:
+
+throw new Error(`${username} is already registered or too young to register`);
+
+Use const instead of let for variables that are not reassigned:
+You can use const instead of let for variables that are not reassigned. This can make the code more readable and help prevent accidental reassignment. For example, in the rentScooter method, you can use const for the location and scooterSerial variables:
+
+
+const location = scooter.station;
+const scooterSerial = scooter.serial;
+
+
+Use optional chaining to simplify property access:
+
+You can use optional chaining to simplify property access and avoid errors when accessing nested properties. For example, in the loginUser method, you can use optional chaining to check if the user exists in the registeredUsers object:
+
+
+if (this.registeredUsers[user?.username]) {
+  user.login(password);
+} else {
+  throw new Error("Username not found");
+}
+
+Use early returns to simplify logic:
+
+You can use early returns to simplify the logic and avoid nested if statements. For example, in the dockScooter method, you can return early if the scooter is already at the station:
+
+
+if (scooter.station === station) {
+  throw new Error("Scooter already at station");
+}
+
+scooter.dock(station);
+this.stations[station].push(scooter);
+console.log("Scooter is docked");
+
+User

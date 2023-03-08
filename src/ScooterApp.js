@@ -23,6 +23,18 @@ class ScooterApp {
       throw new Error("already registered or too young to register")
     }  
   }
+
+/*
+
+Use template literals to improve string concatenation:
+You can use template literals to improve string concatenation, making it easier to read and understand. For example, in the registerUser method, you can use template literals to concatenate the error message:
+
+throw new Error(`${username} is already registered or too young to register`);
+
+*/
+
+
+
   //login method calls on user method login 
   loginUser(user, password){
     if (user.username in this.registeredUsers){
@@ -53,6 +65,17 @@ class ScooterApp {
       throw new Error("no such station");
     }
   }
+
+
+/* 
+Use object destructuring to simplify variable assignments:
+
+You can use object destructuring to simplify variable assignments. For example, in the createScooter method, you can destructure the station property from the scooter object like this:
+
+let { station } = scooter;
+
+*/
+
   //rentScooter method
   rentScooter(scooter, user){
     let location  = scooter.station;
@@ -61,9 +84,11 @@ class ScooterApp {
     let listLength = scootApp.stations[location].length;
 
     scooter.rent();
+  
+
     
 //REFACTOR HERE 
-    //use a for-in loop instead of a for-loop
+    //use a for-in loop instead of a for-loop because we a looping through an object
     for(let i = 0; i < listLength; i++){     
       if(this.stations[location][i]["serial"] == scooterSerial){
         //assign user to scooter
@@ -80,6 +105,27 @@ class ScooterApp {
     }
     
   }
+
+/*
+Use for...of loop instead of for loop:
+You can use the for...of loop to iterate over an array or any iterable object, making the code more concise and readable. For example, in the rentScooter method, you can replace the for loop with a for...of loop:
+
+for (let scooter of this.stations[location]) {
+  if (scooter.serial === scooterSerial) {
+    // assign user to scooter
+    if (scooter.user) {
+      throw new Error("Scooter already rented");
+    } else {
+      scooter.user = user;
+    }
+    // remove scooter from station list
+    console.log("Scooter is rented");
+    this.stations[location].splice(this.stations[location].indexOf(scooter), 1);
+    break;
+  }
+} */
+
+
   //dockScooter method
   dockScooter(scooter, station){
     //check if scooter docked && if station exist
